@@ -1,0 +1,182 @@
+ID,Explanation,Original Code,Correct Code,Context
+1,The code violates the Critical Rule 'Feature Context: C++ syntax requires semicolons after statements' by missing a semicolon after the variable declaration 'int a = 5'.,"#include <iostream>
+using namespace std;
+int main(){
+ int a = 5
+ cout << a;
+}","#include <iostream>
+using namespace std;
+int main(){
+  int a = 5;
+  cout << a;
+}",C++ syntax requires semicolons after statements
+2,The code at line 5 uses an assignment operator (=) instead of a comparison operator. The correct operator to use in this context is a comparison operator (==).,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5,b=10;
+ if(a=b) cout<<""Equal"";
+}","#include <iostream>
+using namespace std;
+int main(){
+  int a=5,b=10;
+  if(a==b) cout<<""Equal"";
+}",Conditional expressions must use comparison operators
+3,"The array 'arr' is declared with a size of 3, which means its valid indices are 0, 1, and 2. However, in line 5, the code attempts to access the index 5, which is out of bounds.","#include <iostream>
+using namespace std;
+int main(){
+ int arr[3]={1,2,3};
+ cout<<arr[5];
+}",cout<<arr[2];,Array indices must stay within allocated size
+4,Heap memory must be freed using delete,"#include <iostream>
+using namespace std;
+int main(){
+ int* p=new int(5);
+ cout<<*p;
+}","1 | #include <iostream>
+2 | using namespace std;
+3 | int main(){
+4 |  int* p=new int(5);
+5 |  cout<<*p;
+6 |  delete p;
+7 |  return 0;
+8 | }",Heap memory must be freed using delete
+5,The code violates the critical rule 'Divisor must never be zero' on line 5.,"#include <iostream>
+using namespace std;
+int main(){
+ int a=10,b=0;
+ cout<<a/b;
+}","if (b != 0) { cout<<a/b; } else { cout << ""Error: Division by zero is not allowed."" << endl; }",Divisor must never be zero
+6,The variable 'x' is used before it is initialized.,"#include <iostream>
+using namespace std;
+int main(){
+ int x;
+ cout<<x;
+}","#include <iostream>
+using namespace std;
+int main(){
+  int x = 0; // Initialize x with a default value
+  cout<<x;
+}",Variables must be initialized before use
+7,"The loop condition is 'i <= 5', which means the loop will execute for 'i' values from 0 to 5, inclusive. This results in an extra iteration when 'i' is 5.","#include <iostream>
+using namespace std;
+int main(){
+ for(int i=0;i<=5;i++) cout<<i;
+}",for(int i=0;i<5;i++) cout<<i;,Loop boundary condition error
+8,"According to the Critical Rules, each statement must end with a semicolon.","#include <iostream>
+using namespace std;
+int main(){
+ cout<<""Hello""
+}","cout(""Hello"");",Each statement must end with semicolon
+9,"The code at line 5 returns the address of a local variable x using the unary & operator. This is a bug because the local variable x goes out of scope after the function returns, making the returned address invalid.","#include <iostream>
+using namespace std;
+int* func(){
+ int x=10;
+ return &x;
+}","int func(){
+  int x=10;
+  return x;
+}",Local variables go out of scope after function returns
+10,The code attempts to dereference a null pointer (*p) on line 5. This is a direct violation of the Critical Rule 'Null pointer dereferenced'.,"#include <iostream>
+using namespace std;
+int main(){
+ int* p=nullptr;
+ cout<<*p;
+}","int* p = new int; // Allocate memory for the pointer
+*p = 10; // Assign a value to the memory location
+",Pointers must point to valid memory before dereferencing
+11,Allocated arrays must be deleted to prevent memory leaks. The allocated array 'arr' is not deleted in the 'main()' function.,"#include <iostream>
+using namespace std;
+int main(){
+ int* arr=new int[10];
+}","int* arr = new int[10];
+// Use the array...
+delete[] arr; // Delete the array to prevent memory leak
+return 0;",Allocated arrays must be deleted
+12,"The code at line 4 attempts to assign a string literal to an integer variable, which is a type mismatch assignment.","#include <iostream>
+using namespace std;
+int main(){
+ int x=""abc"";
+}","string x = ""abc"";",Incompatible data types in assignment
+13,"The condition 'a > 10' is always false because the value of 'a' is 5, which is less than 10.","#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ if(a>10) cout<<""Yes"";
+}","if(a == 5) cout<<""Yes"";",Logical condition error
+14,The code violates the Critical Rule 'Missing semicolon after statement'. The statement 'cout<<a' is missing a semicolon at the end.,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ cout<<a
+}","int main(){
+  int a=5;
+  cout<<a;
+}",Syntax requires semicolon
+15,"The array 'arr' is declared with a size of 2, which means it has indices 0 and 1. However, on line 6, the code attempts to write to index 2, which is outside the allocated size of the array.","#include <iostream>
+using namespace std;
+int main(){
+ int arr[2];
+ arr[2]=10;
+}","int arr[2];
+arr[0]=10;",Array index exceeds allocated size
+16,"The loop termination condition i < 5 will not include the iteration where i = 5, violating the 'Critical Rules: Loop misses expected iteration' rule.","#include <iostream>
+using namespace std;
+int main(){
+ int sum=0;
+ for(int i=1;i<5;i++) sum+=i;
+}",for(int i=1;i<=5;i++) sum+=i;,Incorrect loop termination condition
+17,"The code is missing a semicolon after the return statement, which is a critical rule violation. This bug can cause compilation errors or unexpected behavior in the program.","#include <iostream>
+using namespace std;
+int main(){
+ return 0
+}",return 0;,Return statements require semicolon
+18,"The code allocates memory on the heap using new int on line 4, but then reassigns the pointer p to nullptr on line 5, effectively losing the original heap memory reference.","#include <iostream>
+using namespace std;
+int main(){
+ int* p=new int;
+ p=nullptr;
+}",int* p = new int; // Do not reassign p to nullptr delete p; // Free the allocated memory,Original heap memory reference lost
+19,"The code violates the 'Critical Rules' related to Integer range overflow. When x is incremented by 1, it overflows and wraps around to the minimum value of a 32-bit signed integer.","#include <iostream>
+using namespace std;
+int main(){
+ int x=2147483647;
+ x=x+1;
+}",long long x = 2147483647; // x = x + 1;,Integer range overflow
+20,The condition 'a < 3 && a > 10' is always false because a variable 'a' cannot be both less than 3 and greater than 10 at the same time.,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ if(a<3 && a>10) cout<<a;
+}",if(a == 5) cout<<a;,Condition can never be true
+21,"The code uses an extra semicolon at the end of the statement, which creates an empty statement.","#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ cout<<a;;
+}",cout<<a;,Redundant semicolon
+22,"The pointer 'p' is not initialized before it is dereferenced at line 5. This is a critical rule violation because dereferencing an uninitialized pointer can lead to undefined behavior, including crashes or incorrect results.","#include <iostream>
+using namespace std;
+int main(){
+ int* p;
+ cout<<*p;
+}","int* p = new int; // Initialize the pointer
+*p = 10; // Assign a value to the pointer
+delete p; // Don't forget to free the memory",Pointer not initialized
+23,"The loop variable 'a' is not being modified within the loop. As a result, the condition 'a > 0' will always be true, causing an infinite loop.","#include <iostream>
+using namespace std;
+int main(){
+ int a=10;
+ while(a>0) cout<<a;
+}",while(a>0) { cout<<a; a--; },Loop variable not modified
+24,"The string literal 'Hello' is not quoted, violating the Critical Rule 'Feature Context: String literals must be quoted'.","#include <iostream>
+using namespace std;
+int main(){
+ cout<<Hello;
+}","cout<<""Hello"";",String literals must be quoted
+25,"Arrays must be deleted using 'delete[]'. However, in the source code, the array 'p' is deleted using 'delete p'.","#include <iostream>
+using namespace std;
+int main(){
+ int* p=new int[5];
+ delete p;
+}","int* p=new int[5];
+delete[] p;",Arrays must be deleted using delete[]

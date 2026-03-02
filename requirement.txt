@@ -1,0 +1,9 @@
+llama-index
+fastmcp
+sentence-transformers
+transformers
+torch
+requests
+openai
+pydantic
+llama-index-embeddings-huggingface

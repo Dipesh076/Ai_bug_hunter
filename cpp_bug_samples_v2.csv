@@ -1,0 +1,145 @@
+id,explanation,code,context
+1,Missing semicolon causes compilation failure,"#include <iostream>
+using namespace std;
+int main(){
+ int a = 5
+ cout << a;
+}",C++ syntax requires semicolons after statements
+2,Assignment operator used instead of comparison,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5,b=10;
+ if(a=b) cout<<""Equal"";
+}",Conditional expressions must use comparison operators
+3,Array index accessed out of bounds,"#include <iostream>
+using namespace std;
+int main(){
+ int arr[3]={1,2,3};
+ cout<<arr[5];
+}",Array indices must stay within allocated size
+4,Dynamically allocated memory not released,"#include <iostream>
+using namespace std;
+int main(){
+ int* p=new int(5);
+ cout<<*p;
+}",Heap memory must be freed using delete
+5,Division by zero leads to runtime crash,"#include <iostream>
+using namespace std;
+int main(){
+ int a=10,b=0;
+ cout<<a/b;
+}",Divisor must never be zero
+6,Uninitialized variable used,"#include <iostream>
+using namespace std;
+int main(){
+ int x;
+ cout<<x;
+}",Variables must be initialized before use
+7,Loop executes one extra iteration,"#include <iostream>
+using namespace std;
+int main(){
+ for(int i=0;i<=5;i++) cout<<i;
+}",Loop boundary condition error
+8,Missing semicolon after cout,"#include <iostream>
+using namespace std;
+int main(){
+ cout<<""Hello""
+}",Each statement must end with semicolon
+9,Returning address of local variable,"#include <iostream>
+using namespace std;
+int* func(){
+ int x=10;
+ return &x;
+}",Local variables go out of scope after function returns
+10,Null pointer dereferenced,"#include <iostream>
+using namespace std;
+int main(){
+ int* p=nullptr;
+ cout<<*p;
+}",Pointers must point to valid memory before dereferencing
+11,Heap memory leak,"#include <iostream>
+using namespace std;
+int main(){
+ int* arr=new int[10];
+}",Allocated arrays must be deleted
+12,Type mismatch assignment,"#include <iostream>
+using namespace std;
+int main(){
+ int x=""abc"";
+}",Incompatible data types in assignment
+13,Condition always evaluates false,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ if(a>10) cout<<""Yes"";
+}",Logical condition error
+14,Missing semicolon after statement,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ cout<<a
+}",Syntax requires semicolon
+15,Writing outside array bounds,"#include <iostream>
+using namespace std;
+int main(){
+ int arr[2];
+ arr[2]=10;
+}",Array index exceeds allocated size
+16,Loop misses expected iteration,"#include <iostream>
+using namespace std;
+int main(){
+ int sum=0;
+ for(int i=1;i<5;i++) sum+=i;
+}",Incorrect loop termination condition
+17,Missing semicolon after return,"#include <iostream>
+using namespace std;
+int main(){
+ return 0
+}",Return statements require semicolon
+18,Memory leak due to pointer reassignment,"#include <iostream>
+using namespace std;
+int main(){
+ int* p=new int;
+ p=nullptr;
+}",Original heap memory reference lost
+19,Integer overflow occurs,"#include <iostream>
+using namespace std;
+int main(){
+ int x=2147483647;
+ x=x+1;
+}",Integer range overflow
+20,Impossible logical condition,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ if(a<3 && a>10) cout<<a;
+}",Condition can never be true
+21,Extra semicolon creates empty statement,"#include <iostream>
+using namespace std;
+int main(){
+ int a=5;
+ cout<<a;;
+}",Redundant semicolon
+22,Uninitialized pointer dereferenced,"#include <iostream>
+using namespace std;
+int main(){
+ int* p;
+ cout<<*p;
+}",Pointer not initialized
+23,Infinite loop due to missing update,"#include <iostream>
+using namespace std;
+int main(){
+ int a=10;
+ while(a>0) cout<<a;
+}",Loop variable not modified
+24,String literal missing quotes,"#include <iostream>
+using namespace std;
+int main(){
+ cout<<Hello;
+}",String literals must be quoted
+25,Incorrect delete operator for array,"#include <iostream>
+using namespace std;
+int main(){
+ int* p=new int[5];
+ delete p;
+}",Arrays must be deleted using delete[]
